@@ -8,17 +8,17 @@ $document = new Document();
 $history = new History();
 
 $document->setContent('Hello World');
-$history->save($document);
+$history->push($document->createMemento());
 
 $document->setFontName('Arial');
-$history->save($document);
+$history->push($document->createMemento());
 
 $document->setFontSize(12);
 
 echo $document->toString();
 
-$document->restore($history->undo($document));
+$document->restore($history->pop());
 echo $document->toString();
 
-$document->restore($history->undo($document));
+$document->restore($history->pop());
 echo $document->toString();
