@@ -1,4 +1,5 @@
 <?php
+require_once 'HtmlElement.php';
 
 class HtmlImage extends HtmlElement {
     private $source;
