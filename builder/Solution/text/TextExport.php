@@ -2,22 +2,28 @@
 require_once './ExportFormat.php';
 require_once 'StringBuilder.php';
 require_once 'Text.php';
-require_once 'Element.php';
+require_once 'Image.php';
 
 class TextExport implements ExportFormat
 {
+    private $builder;
 
-    public function getContent($elements)
+    public function reset()
     {
-        $builder = new StringBuilder();
+        $this->builder = new StringBuilder();
+    }
 
-        foreach ($elements as $element) {
-            if ($element instanceof Text) {
-                $text = $element->getContent();
-                $builder->add($text);
-            }
-        }
+    public function addText(Text $text)
+    {
+        $this->builder->add($text->getContent());
+    }
 
-        return $builder->toString();
+    public function addImage(Image $image)
+    {
+
+    }
+    public function getContent()
+    {
+        return $this->builder->toString();
     }
 }

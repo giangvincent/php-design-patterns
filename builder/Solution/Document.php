@@ -2,6 +2,8 @@
 
 require_once 'Element.php';
 require_once 'ExportFormat.php';
+require_once 'Text.php';
+require_once 'Image.php';
 
 class Document
 {
@@ -12,12 +14,19 @@ class Document
         $this->elements[] = $element;
     }
 
-    public function export(ExportFormat $format, String $fileName)
+    public function export(ExportFormat $formatBuilder, String $fileName)
     {
-        $content = $format->getContent($this->elements);
+        $formatBuilder->reset();
+        foreach($this->elements as $element) {
+            if ($element instanceof Text) {
+                $formatBuilder->addText($element);
+            } elseif ($element instanceof Image) {
+                $formatBuilder->addImage($element);
+            }
+        }
 
         $myfile = fopen($fileName, "w") or die("Unable to open file!");
-        fwrite($myfile, $content);
+        fwrite($myfile, $formatBuilder->getContent());
         fclose($myfile);
     }
 }

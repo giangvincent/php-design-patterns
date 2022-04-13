@@ -9,21 +9,24 @@ require_once 'Element.php';
 
 class HtmlExport implements ExportFormat
 {
-
-    public function getContent($elements)
+    private $document;
+    public function reset()
     {
-        $document = new HtmlDocument();
+        $this->document = new HtmlDocument();
+    }
 
-        foreach ($elements as $element) {
-            if ($element instanceof Text) {
-                $text = $element->getContent();
-                $document->add(new HtmlParagraph($text));
-            } else if ($element instanceof Image) {
-                $source = $element->getSource();
-                $document->add(new HtmlImage($source));
-            }
-        }
+    public function addText(Text $text)
+    {
+        $this->document->add(new HtmlParagraph($text->getContent()));
+    }
 
-        return $document->toString();
+    public function addImage(Image $image)
+    {
+        $this->document->add(new HtmlImage($image->getSource()));
+    }
+
+    public function getContent()
+    {
+        return $this->document->toString();
     }
 }
