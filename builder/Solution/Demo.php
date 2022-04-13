@@ -1,5 +1,7 @@
 <?php
 require_once 'Document.php';
+require_once 'html/HtmlExport.php';
+require_once 'text/TextExport.php';
 
 class Demo {
     public static function show() {
@@ -7,10 +9,10 @@ class Demo {
         $document->add(new Text("Hello World"));
         $document->add(new Image("pic1.jpg"));
 
-        $document->export(Document::EXPORT_FORMAT_HTML, "export.html");
+        $document->export(new HtmlExport(), "export.html");
 
         // Only writes the text elements to the file
-        $document->export(Document::EXPORT_FORMAT_TEXT, "export.txt");
+        $document->export(new TextExport(), "export.txt");
     }
 }
 
