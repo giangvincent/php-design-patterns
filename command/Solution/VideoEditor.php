@@ -22,9 +22,8 @@ class VideoEditor {
 
     // @Override
     public function __toString() {
-        return "VideoEditor{" +
-                "contrast=" + $this->contrast +
-                ", text='" + $this->text + '\'' +
-                '}';
+        return "VideoEditor{" .
+                "contrast=" . $this->contrast .
+                ", text='" . $this->text . "'}\n";
     }
 }
