@@ -1,9 +1,10 @@
 <?php
+require_once 'ActionInterface.php';
 
-class Team {
+class Team implements ActionInterface {
   private $resources = [];
 
-  public function add($resource) {
+  public function add(ActionInterface $resource) {
     $this->resources[] = $resource;
   }
 
