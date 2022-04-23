@@ -5,7 +5,7 @@ class Artefact {
     private $hasError;
     private $isMain;
 
-    public function Artefact(String $name) {
+    public function __construct(String $name) {
         $this->name = $name;
     }
 
