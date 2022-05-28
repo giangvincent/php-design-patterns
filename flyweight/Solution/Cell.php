@@ -1,51 +1,42 @@
 <?php
+require_once 'CellContext.php';
 
-class Cell {
+class Cell
+{
   private $row;
   private $column;
   private $content;
-  private $fontFamily;
-  private $fontSize;
-  private $isBold;
+  private $cellContext;
 
-  public function __construct($row, $column) {
+  public function __construct($row, $column, CellContext $cellContext)
+  {
     $this->row = $row;
     $this->column = $column;
+    $this->cellContext = $cellContext;
   }
 
-  public function getContent() {
+  public function getContent()
+  {
     return $this->content;
   }
 
-  public function setContent($content) {
+  public function setContent($content)
+  {
     $this->content = $content;
   }
 
-  public function getFontFamily() {
-    return $this->fontFamily;
+  public function getContext()
+  {
+    return $this->cellContext;
   }
 
-  public function setFontFamily($fontFamily) {
-    $this->fontFamily = $fontFamily;
+  public function setContext(CellContext $context)
+  {
+    $this->cellContext = $context;
   }
 
-  public function getFontSize() {
-    return $this->fontSize;
-  }
-
-  public function setFontSize($fontSize) {
-    $this->fontSize = $fontSize;
-  }
-
-  public function isBold() {
-    return $this->isBold;
-  }
-
-  public function setBold($bold) {
-    $this->isBold = $bold;
-  }
-
-  public function render() {
-    echo sprintf("(%d, %d): %s [%s]\n", $this->row, $this->column, $this->content, $this->fontFamily);
+  public function render()
+  {
+    echo sprintf("(%d, %d): %s [%s]\n", $this->row, $this->column, $this->content, $this->cellContext->getFontFamily());
   }
 }

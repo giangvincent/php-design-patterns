@@ -2,8 +2,8 @@
 require_once 'Cell.php';
 
 class SpreadSheet {
-  const MAX_ROWS = 3;
-  const MAX_COLS = 3;
+  const MAX_ROWS = 1000;
+  const MAX_COLS = 1000;
 
   // In a real app, these values should not be hardcoded here.
   // They should be read from a configuration file.
